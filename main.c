@@ -18,6 +18,7 @@ int main(int argc, char **argv) {
 	current = root;
 
 	int i;
+	//Here it loops even if the current is never assigned
 	for(i = 0; i <= 20; i++)	{
 		current->next = malloc(sizeof(item));
 		current = current->next;
@@ -25,7 +26,7 @@ int main(int argc, char **argv) {
 	}
 
 	while(root->next != NULL)	{
-		printf("This is NEVER EXECUTED\n");
+		//This is enver executed!
 		printf("[%d]\n", root->value);
 		root = root->next;
 	}
