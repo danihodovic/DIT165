@@ -8,24 +8,29 @@
 int main()
 {
 	char text[MAX];
-	puts("Enter >");
 	int i;
-	while(1)	{
+	int num_chars;
+
+	while(1)        {
+
 		i = 0;
-		scanf("%s", text);
-		while(1)	{
-			if(text[i] == '\0')	{
-				puts("\n");
-				break;
+		num_chars = scanf("%s", text);
+
+		if(num_chars == EOF)	{
+			exit(1);
+		} else	{
+			while(1)        {
+				if(text[i] == '\0')        {
+					puts("\n");
+					break;
+				}
+				if(text[i] > 109)        {
+					printf("%c", (char)((int)text[i]) - 13);
+				}else        {
+					printf("%c", (char)((int)text[i]) + 13);
+				}
+				i++;
 			}
-			if(text[i] > 109)	{
-				printf("%c", (char)((int)text[i]) - 13);
-			}else	{
-				printf("%c", (char)((int)text[i]) + 13);
-			}
-			i++;
 		}
 	}
-
-	return 0;
 }
