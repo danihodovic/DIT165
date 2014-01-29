@@ -11,14 +11,10 @@ int main()
 	int i;
 	int num_chars;
 
-	while(1)        {
+	while(num_chars != EOF)        {
 
 		i = 0;
 		num_chars = scanf("%s", text);
-
-		if(num_chars == EOF)	{
-			exit(1);
-		} else	{
 			while(1)        {
 				if(text[i] == '\0')        {
 					puts("\n");
@@ -31,6 +27,7 @@ int main()
 				}
 				i++;
 			}
-		}
+		
 	}
 }
+
