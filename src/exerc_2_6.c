@@ -1,53 +1,68 @@
-/*
- * exerc_2_6.c
- *
- *  Created on: Feb 1, 2014
- *      Author: dani
- */
-
 #include <stdlib.h>
 #include <stdio.h>
-#define MAX 5
+#define FIVE 5
 
-void fill(int* p)	{
-	int i;
-	for(i = 0; i < MAX; i++)	{
-		p[i] = -1;
-	}
-}
+int input (int list [], int number);
+void initQue (int list[]);
+int removeInt(int* list);
 
-int push(int* p, int num)	{
-	if(p[MAX - 1] != -1)	{
+int input(int* list, int number)	{
+//	return if full
+	if(*(list + FIVE - 1) != -1)	{
 		return 0;
 	}
+
 	int tmp;
 	int i;
-	for (i = 0; i < MAX; ++i) {
-		tmp = p[i];
-		p[i] = num;
-		num = tmp;
+	for(i = 0; i < FIVE; i++)	{
+		tmp = *(list + i);
+		*(list + i) = number;
+		number = tmp;
 	}
+
 	return 1;
+}
+
+int removeInt(int* list)	{
+	int i;
+	for(i = FIVE - 1; i >= 0; i--)	{
+		if(list[i] != -1)	{
+			list[i] = -1;
+			return 1;
+		}
+	}
+	return 0;
+}
+
+void initQue(int* list)	{
+	int i;
+	for(i = 0; i < FIVE + 1; i++)	{
+		*(list + i) = -1;
+	}
 }
 
 
 int main(int argc, char **argv) {
-	int array[MAX];
-	fill(array);
+	int array[FIVE];
+	initQue(array);
+	int c;
+	for(c = 0; c < FIVE; c++)	{
+		printf("%d\t", array[c]);
+	}
 
-	push(array, 5);
-	push(array, 7);
-	push(array, 5);
-	push(array, 7);
-	push(array, 13);
-	push(array, 19);
+	puts("");
+	input(array, 5);
+	input(array, 3);
+	input(array, 10);
+	input(array, 14);
+	input(array, 3);
+	removeInt(array);
+	input(array, 25);
 
-	int i;
-	for (i = 0; i < MAX; ++i) {
-		printf("%d\t", array[i]);
+	for(c = 0; c < FIVE; c++)	{
+		printf("%d\t", array[c]);
 	}
 	puts("");
 
 	return 0;
 }
-
