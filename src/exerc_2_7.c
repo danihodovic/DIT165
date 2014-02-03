@@ -12,14 +12,14 @@
 
 void readPersnr(char* person);
 int controlDigit(const char* persnr);
-void readPersnr(const char* person);
+int checkDates(const char* person);
 
-void readPersnr(const char* person)	{
+void readPersnr(char* person)	{
 	if(checkDates(person))	{
 		if(controlDigit(person))
 			printf("Valid persnr: %s", person);
 
-		else printf("Invalid persnr: %s\n", person);
+		else printf("Invalid persnr: %s", person);
 
 	}
 	else puts("Invalid dates");
