@@ -1,4 +1,4 @@
-learning-c
+C
 ==========
 
 C Basics
