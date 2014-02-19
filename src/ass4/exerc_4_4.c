@@ -21,8 +21,8 @@ int is_key_pressed()	{
 void print_character()	{
 	char c;
 	char source = *address & 0xF; //filter out what we need
-	sscanf(&c, "%x", &source);
-	printf("%x\n", c);
+	sscanf(&source, "%x", &c);
+	printf("Key pressed: %x\n", c);
 }
 void main(){
 
