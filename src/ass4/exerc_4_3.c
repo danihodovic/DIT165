@@ -15,8 +15,8 @@ Demonstration code: [<Ass code 1‐4> <abc>]
 char* button = 0x400;
 char* outport = 0x402;
 
-void sleep()	{
-for(i = 0; i < 50; i++){
+void sleep(int* i)	{
+for(*i = 0; *i < 50; (*i)++){
 //Sleeps
 }
 }
@@ -42,6 +42,6 @@ if (*button & 0x80){
 			increment = increment << 0x01;
         }
 }
-sleep();
+sleep(&i);
 }
 }
