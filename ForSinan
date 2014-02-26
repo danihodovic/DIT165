@@ -1,5 +1,10 @@
-
 /*
+
+INCLUDE ASSEMBLY
+ENABLE IRQ
+CALL INITIRQ METHOD IN MAIN
+
+
   	Event driven "door automat" ML13
 	Led light on indicate open door. All on for fully open
 	This version is just for test in the simulator.
