@@ -1,5 +1,5 @@
 /* ====================================
-File name: code.c
+File name: main-6-1.c
 Date: Feb 27, 2014
 Group Number: 13
 Members that contributed:
