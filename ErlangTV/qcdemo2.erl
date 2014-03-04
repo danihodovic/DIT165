@@ -74,7 +74,7 @@ gen_random_list() ->
 
 gen_random_item() ->
 	oneof([int(), binary(), char(), bitstring(), bool(),
-				nat(), largeint()]).
+		   nat(), largeint()]).
 
 prop_list_1() ->
 	?FORALL(
@@ -89,9 +89,9 @@ prop_list_1() ->
 				[FirstItem|_] = OriginalList,
 				ShorterList = lists:delete(FirstItem, OriginalList),
 				length(ShorterList) == length(OriginalList) - 1
-				
+			
 			catch error:_Error -> 
-				OriginalList == []
+					  OriginalList == []
 			end)).
 
 %% Testing adding and removing random item
@@ -113,6 +113,38 @@ prop_list_2() ->
 				AddedList = OriginalList ++ [Randomitem],
 				OriginalList == AddedList -- [Randomitem]
 			catch error:Error -> 
-				io:format("ERROR IS HERE: ~p~n", [Error])
-				%item_exists(OriginalList, Randomitem)
+				Error
+			%item_exists(OriginalList, Randomitem)
 			end)).
+
+%% Testing calendar:last_day_of_the_month/2
+%% ----------------------------------------
+
+check_leap_year(Year, Day) ->
+	case calendar:is_leap_year(Year) of
+		 true ->
+			Day == 29;
+		false -> Day == 28
+	end.
+prop_date() ->
+	?FORALL(
+	{Year, Month}, {2001, choose(1, 12)},
+	try
+		Day = calendar:last_day_of_the_month(Year, Month),
+		case Month of
+			1 -> Day == 31;
+			2 -> check_leap_year(Year, Day);
+			3 -> Day == 31;
+			4 -> Day == 30;
+			5 -> Day == 31;
+			6 -> Day == 30;	
+			7 -> Day == 31;
+			8 -> Day == 31;
+			9 -> Day == 30;
+			10 -> Day == 31;
+			11 -> Day == 30;
+			12 -> Day == 31
+		end
+	catch error:Error -> 
+		Month == 2
+	end).
