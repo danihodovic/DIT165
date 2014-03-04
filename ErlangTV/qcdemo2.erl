@@ -128,7 +128,7 @@ check_leap_year(Year, Day) ->
 	end.
 prop_date() ->
 	?FORALL(
-	{Year, Month}, {2001, choose(1, 12)},
+	{Year, Month}, {choose(0, 10000), choose(1, 12)},
 	try
 		Day = calendar:last_day_of_the_month(Year, Month),
 		case Month of
@@ -146,5 +146,5 @@ prop_date() ->
 			12 -> Day == 31
 		end
 	catch error:Error -> 
-		Month == 2
+		Error
 	end).
