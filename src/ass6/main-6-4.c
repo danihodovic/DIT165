@@ -1,3 +1,13 @@
+/* ====================================
+File name: main-6-2.c
+Date: Mar 4, 2014
+Group Number: 13
+Members that contributed:
+Dani Hodovic
+Sinan Alazzawi
+Yazen Raad
+Demonstration code: [<Ass code 1‐4> <34798>]
+====================================== */
 #include <_rtk.h>
 #include <stdio.h>
 
