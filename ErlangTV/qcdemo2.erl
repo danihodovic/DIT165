@@ -73,7 +73,7 @@ gen_random_list() ->
 	list(gen_random_item()).
 
 gen_random_item() ->
-	oneof([int(), binary(), char(), bitstring(), bool(),
+	oneof([int(), binary(), char(), bitstring(), %bool(),
 		   nat(), largeint()]).
 
 prop_list_1() ->
@@ -113,8 +113,8 @@ prop_list_2() ->
 				AddedList = OriginalList ++ [Randomitem],
 				OriginalList == AddedList -- [Randomitem]
 			catch error:Error -> 
-				Error
-			%item_exists(OriginalList, Randomitem)
+				%Error
+				item_exists(OriginalList, Randomitem)
 			end)).
 
 %% Testing calendar:last_day_of_the_month/2
@@ -145,6 +145,18 @@ prop_date() ->
 			11 -> Day == 30;
 			12 -> Day == 31
 		end
+	catch error:Error -> 
+		Error
+	end).
+
+%% Testing calendar:time_to_seconds/1
+%% ----------------------------------------
+prop_time_to_seconds() ->
+	?FORALL(
+	{Hour, Minute, Second}, {choose(0, 100000), choose(1, 60), choose(1, 60)},
+	try
+		Result_in_seconds = calendar:time_to_seconds({Hour, Minute, Second}),
+		Result_in_seconds == Hour * 3600 + Minute * 60 + Second
 	catch error:Error -> 
 		Error
 	end).
