@@ -110,7 +110,7 @@ prop_list_2() ->
 	{OriginalList, Randomitem}, {gen_random_list(), gen_random_item()},
 	collect(item_exists(OriginalList, Randomitem), 
 			try
-				AddedList = OriginalList ++ [Randomitem],
+				AddedList = [Randomitem|OriginalList],%OriginalList ++ [Randomitem],
 				OriginalList == AddedList -- [Randomitem]
 			catch error:Error -> 
 				%Error
