@@ -1,7 +1,2 @@
 Hello
-<<<<<<< HEAD
-Lol2
-=======
-Haha
->>>>>>> 6bf17c438913f9ed408bdfa7d2eed1c9c9b66f0c
 Lmfao
