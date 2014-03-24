@@ -1,6 +1,7 @@
 /*
  * Exerc_2_ 1.c
- *
+ * What a king dani is
+ * Yeah lol
  *  Created on: Jan 29, 2014
  *      Author: dani
  */
